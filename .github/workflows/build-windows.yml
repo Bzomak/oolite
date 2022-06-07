@@ -12,6 +12,13 @@ jobs:
         run: |
           Get-ChildItem Env: | Sort Name
 
+      - name: Cache DevelopmentEnvironment
+        uses: actions/cache@v3
+        with:
+          path: DevelopmentEnvironment
+          key: ${{ runner.os }}-oolite-win-dev-env-${{ hashFiles('.git/HEAD') }}
+          restore-keys: ${{ runner.os }}-oolite-win-dev-env-
+
       - name: Checkout DevelopmentEnvironment
         uses: actions/checkout@v2
         with:
