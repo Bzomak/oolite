@@ -851,7 +851,7 @@ static NSString * kOOLogKeyDown				= @"input.keyMapping.keyPress.keyDown";
                       texture_format, GL_UNSIGNED_BYTE, image->pixels );
 
 	glBindTexture( GL_TEXTURE_2D, texture );
-	glBegin( GL_QUADS );
+	glBegin( GL_TRIANGLE_FAN );
 
 	glTexCoord2i( 0, 0 );
 	glVertex2i( 0, 0 );

@@ -519,7 +519,7 @@ static BOOL stickProfileArrow_pressed;
 	graphRect = NSMakeRect(at.x, at.y, size.width, size.height);
 	OO_ENTER_OPENGL();
 	OOGL(glColor4f(0.2,0.2,0.5,alpha));
-	OOGLBEGIN(GL_QUADS);
+	OOGLBEGIN(GL_TRIANGLE_FAN);
 		glVertex3f(at.x,at.y,at.z);
 		glVertex3f(at.x + size.width,at.y,at.z);
 		glVertex3f(at.x + size.width,at.y + size.height,at.z);

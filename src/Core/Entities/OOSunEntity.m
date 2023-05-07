@@ -633,7 +633,7 @@ MA 02110-1301, USA.
 													
 		OOGL(glColor4fv(directVisionSunGlareColor));
 		
-		OOGLBEGIN(GL_QUADS);
+		OOGLBEGIN(GL_TRIANGLE_FAN);
 		glVertex3f(siz.width, siz.height, z);
 		glVertex3f(siz.width, -siz.height, z);
 		glVertex3f(-siz.width, -siz.height, z);
@@ -669,7 +669,7 @@ MA 02110-1301, USA.
 		GLfloat z  = [gameView display_z] / (aspectRatio > 4.0f/3.0f ? aspectRatio : 1.0f / aspectRatio);
 		OOGL(glColor4fv(glareColor));
 
-		OOGLBEGIN(GL_QUADS);
+		OOGLBEGIN(GL_TRIANGLE_FAN);
 		glVertex3f(siz.width, siz.height, z);
 		glVertex3f(siz.width, -siz.height, z);
 		glVertex3f(-siz.width, -siz.height, z);
