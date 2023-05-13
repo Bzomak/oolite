@@ -167,7 +167,7 @@ do { \
 		OOGLPushModelView();
 		OOGLMultModelView(OOMatrixForBillboard(selfPosition, viewPosition));
 		
-		OOGLBEGIN(GL_QUADS);
+		OOGLBEGIN(GL_TRIANGLE_FAN);
 		for (i = 0; i < count; i++)
 		{
 			glColor4fv(particleColor[i]);
@@ -198,7 +198,7 @@ do { \
 				OOGLMultModelView(bbMatrix);
 				
 				glColor4fv(particleColor[i]);
-				OOGLBEGIN(GL_QUADS);
+				OOGLBEGIN(GL_TRIANGLE_FAN);
 					DrawQuadForView(0, 0, 0, particleSize[i]);
 				OOGLEND();
 				
@@ -221,7 +221,7 @@ do { \
 				OOGLMultModelView(OOMatrixForBillboard(HPvector_add(selfPosition, vectorToHPVector(vector_multiply_scalar(particlePosition[i], individuality))), viewPosition));
 				
 				glColor4fv(particleColor[i]);
-				OOGLBEGIN(GL_QUADS);
+				OOGLBEGIN(GL_TRIANGLE_FAN);
 				DrawQuadForView(0, 0, 0, particleSize[i]);
 				OOGLEND();
 				

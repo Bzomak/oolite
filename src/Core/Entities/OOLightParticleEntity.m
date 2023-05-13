@@ -182,7 +182,7 @@ static OOTexture *sBlobTexture = nil;
 	*/
 	float viewOffset = _diameter * 0.5f;
 	
-	OOGLBEGIN(GL_QUADS);
+	OOGLBEGIN(GL_TRIANGLE_FAN);
 	switch (viewDir)
 	{
 		case VIEW_FORWARD:
