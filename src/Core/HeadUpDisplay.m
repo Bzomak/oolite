@@ -1449,10 +1449,12 @@ static void prefetchData(NSDictionary *info, struct CachedInfo *data)
 						OODrawString([(ShipEntity *)scannedEntity displayName], x1 + 2, y2 + 2, z1, NSMakeSize(8, 8));
 					}
 #endif
-					OOGLBEGIN(GL_QUADS);
+					OOGLBEGIN(GL_TRIANGLE_FAN);
 						glColor4fv(col);
 						glVertex3f(x1-3, y2, z1);	glVertex3f(x1+2, y2, z1);	glVertex3f(x1+2, y2+3, z1);	glVertex3f(x1-3, y2+3, z1);	
+					OOGLEND();
 						col[3] *= 0.3333; // one third the alpha
+					OOGLBEGIN(GL_TRIANGLE_FAN);
 						glColor4fv(col);
 						glVertex3f(x1, y1, z1);	glVertex3f(x1+2, y1, z1);	glVertex3f(x1+2, y2, z1);	glVertex3f(x1, y2, z1);
 					OOGLEND();
@@ -2683,7 +2685,7 @@ static OOPolygonSprite *IconForMissileRole(NSString *role)
 			case MISSILE_STATUS_TARGET_LOCKED:
 				GLColorWithOverallAlpha(red_color, alpha);		break;
 		}
-		OOGLBEGIN(GL_QUADS);
+		OOGLBEGIN(GL_TRIANGLE_FAN);
 			glVertex3i(x , y, z1);
 			glVertex3i(x + siz.width, y, z1);
 			glVertex3i(x + siz.width, y + siz.height, z1);
@@ -3358,7 +3360,7 @@ static OOPolygonSprite *IconForMissileRole(NSString *role)
 	GLfloat x1 = (GLfloat)(x + cached.width/2);
 	GLfloat y1 = (GLfloat)(y - cached.height/2);
 	GLColorWithOverallAlpha(mfd_color, alpha*0.3);
-	OOGLBEGIN(GL_QUADS);
+	OOGLBEGIN(GL_TRIANGLE_FAN);
 		glVertex3f(x0-2,y0+2,z1);
 		glVertex3f(x0-2,y1-2,z1);
 		glVertex3f(x1+2,y1-2,z1);

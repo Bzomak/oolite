@@ -438,7 +438,7 @@ static void PlayTrumbleSqueal(void);
 	OOGLTranslateModelView(make_vector(eye_position.x * wd, eye_position.y * ht, 0.0));
 	
 	OOGL(glColor4fv(colorEyes));
-	OOGLBEGIN(GL_QUADS);
+	OOGLBEGIN(GL_TRIANGLE_FAN);
 		glTexCoord2f( 0.5, eyeTextureOffset);
 		glVertex2f(	-0.5 * wd,	0.20 * ht);
 		
@@ -472,7 +472,7 @@ static void PlayTrumbleSqueal(void);
 	OOGLTranslateModelView(make_vector(mouth_position.x * wd, mouth_position.y * ht, 0.0));
 	
 	OOGL(glColor4fv(colorBase));
-	OOGLBEGIN(GL_QUADS);
+	OOGLBEGIN(GL_TRIANGLE_FAN);
 		glTexCoord2f( 0.0, mouthTextureOffset);
 		glVertex2f(	-0.25 * wd,	-0.10 * ht);
 		

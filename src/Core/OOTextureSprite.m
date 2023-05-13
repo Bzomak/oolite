@@ -79,7 +79,7 @@ MA 02110-1301, USA.
 	// Note that the textured Quad is drawn ACW from the top left.
 	
 	[texture apply];
-	OOGLBEGIN(GL_QUADS);
+	OOGLBEGIN(GL_TRIANGLE_FAN);
 		glTexCoord2f(0.0, 0.0);
 		glVertex3f(x, y+size.height, z);
 		

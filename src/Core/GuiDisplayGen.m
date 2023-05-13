@@ -1506,7 +1506,7 @@ static OOTextureSprite *NewTextureSpriteWithDescriptor(NSDictionary *descriptor)
 		if (playerStatus != STATUS_START_GAME && playerStatus != STATUS_DEAD)
 		{
 			OOGL(glColor4f([backgroundColor redComponent], [backgroundColor greenComponent], [backgroundColor blueComponent], backgroundAlpha * [backgroundColor alphaComponent]));
-			OOGLBEGIN(GL_QUADS);
+			OOGLBEGIN(GL_TRIANGLE_FAN);
 				glVertex3f(x + 0.0f,					y + 0.0f,					z);
 				glVertex3f(x + size_in_pixels.width,	y + 0.0f,					z);
 				glVertex3f(x + size_in_pixels.width,	y + size_in_pixels.height,	z);
@@ -1542,7 +1542,7 @@ static OOTextureSprite *NewTextureSpriteWithDescriptor(NSDictionary *descriptor)
 		//
 		[self setGLColorFromSetting:kGuiScreenDividerColor defaultValue:[OOColor colorWithWhite:0.75 alpha:1.0] alpha:alpha];
 
-		OOGLBEGIN(GL_QUADS);
+		OOGLBEGIN(GL_TRIANGLE_FAN);
 			glVertex3f(x + 0,					y + size_in_pixels.height - pixel_title_size.height + 4,	z);
 			glVertex3f(x + size_in_pixels.width,	y + size_in_pixels.height - pixel_title_size.height + 4,	z);
 			glVertex3f(x + size_in_pixels.width,	y + size_in_pixels.height - pixel_title_size.height + 2,		z);
@@ -1581,7 +1581,7 @@ static OOTextureSprite *NewTextureSpriteWithDescriptor(NSDictionary *descriptor)
 					NSRect		block = OORectFromString(text, x + rowPosition[i].x + 2, y + rowPosition[i].y + 2, characterSize);
 					OOStopDrawingStrings();
 					[self setGLColorFromSetting:kGuiSelectedRowBackgroundColor defaultValue:[OOColor redColor] alpha:alpha];
-					OOGLBEGIN(GL_QUADS);
+					OOGLBEGIN(GL_TRIANGLE_FAN);
 						glVertex3f(block.origin.x,						block.origin.y,						z);
 						glVertex3f(block.origin.x + block.size.width,	block.origin.y,						z);
 						glVertex3f(block.origin.x + block.size.width,	block.origin.y + block.size.height,	z);
@@ -1603,7 +1603,7 @@ static OOTextureSprite *NewTextureSpriteWithDescriptor(NSDictionary *descriptor)
 					GLfloat g_alpha = 0.5f * (1.0f + (float)sin(6 * [UNIVERSE getTime]));
 					OOStopDrawingStrings();
 					[self setGLColorFromSetting:kGuiTextInputCursorColor defaultValue:[OOColor redColor] alpha:row_alpha[i]*g_alpha];
-					OOGLBEGIN(GL_QUADS);
+					OOGLBEGIN(GL_TRIANGLE_FAN);
 						glVertex3f(tr.origin.x,					tr.origin.y,					z);
 						glVertex3f(tr.origin.x + tr.size.width,	tr.origin.y,					z);
 						glVertex3f(tr.origin.x + tr.size.width,	tr.origin.y + tr.size.height,	z);
@@ -1671,7 +1671,7 @@ static OOTextureSprite *NewTextureSpriteWithDescriptor(NSDictionary *descriptor)
 					{
 						OOStopDrawingStrings();
 						[self setGLColorFromSetting:kGuiSelectedRowBackgroundColor defaultValue:[OOColor redColor] alpha:alpha];
-						OOGLBEGIN(GL_QUADS);
+						OOGLBEGIN(GL_TRIANGLE_FAN);
 							glVertex3f(block.origin.x,						block.origin.y,						z);
 							glVertex3f(block.origin.x + block.size.width,	block.origin.y,						z);
 							glVertex3f(block.origin.x + block.size.width,	block.origin.y + block.size.height,	z);
@@ -1692,11 +1692,13 @@ static OOTextureSprite *NewTextureSpriteWithDescriptor(NSDictionary *descriptor)
 
 - (void) drawCrossHairsWithSize:(GLfloat) size x:(GLfloat)x y:(GLfloat)y z:(GLfloat)z
 {
-	OOGLBEGIN(GL_QUADS);
+	OOGLBEGIN(GL_TRIANGLE_FAN);
 		glVertex3f(x - 1,	y - size,	z);
 		glVertex3f(x + 1,	y - size,	z);
 		glVertex3f(x + 1,	y + size,	z);
 		glVertex3f(x - 1,	y + size,	z);
+	OOGLEND();
+	OOGLBEGIN(GL_TRIANGLE_FAN);
 		glVertex3f(x - size,	y - 1,	z);
 		glVertex3f(x + size,	y - 1,	z);
 		glVertex3f(x + size,	y + 1,	z);
@@ -2321,7 +2323,7 @@ static OOTextureSprite *NewTextureSpriteWithDescriptor(NSDictionary *descriptor)
 
 	// Draw bottom divider
 	[self setGLColorFromSetting:kGuiScreenDividerColor defaultValue:[OOColor colorWithWhite:0.75 alpha:1.0] alpha:alpha];
-	OOGLBEGIN(GL_QUADS);
+	OOGLBEGIN(GL_TRIANGLE_FAN);
 		glVertex3f(x + 0, (float)(y + size_in_pixels.height - (textRow-1)*MAIN_GUI_ROW_HEIGHT - pixel_title_size.height),	z);
 		glVertex3f(x + size_in_pixels.width, (GLfloat)(y + size_in_pixels.height - (textRow-1)*MAIN_GUI_ROW_HEIGHT - pixel_title_size.height), z);
 		glVertex3f(x + size_in_pixels.width, (GLfloat)(y + size_in_pixels.height - (textRow-1)*MAIN_GUI_ROW_HEIGHT - pixel_title_size.height - 2), z);
